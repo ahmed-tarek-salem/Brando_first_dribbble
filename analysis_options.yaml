@@ -1,0 +1,13 @@
+include: package:lint/analysis_options.yaml
+
+# Customizing the strict of compiler
+analyzer:
+  errors:
+    prefer_const_constructors : error
+
+# Turning of the sort pub checker
+linter:
+  rules:
+    sort_pub_dependencies: false
+
+
