@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:bordered_text/bordered_text.dart';
 
 class FullMenuScreen extends StatelessWidget {
-  const FullMenuScreen();
+  FullMenuScreen();
   @override
   Widget build(BuildContext context) {
+    print('Start');
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -66,7 +67,7 @@ class FullMenuScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 left: 50, top: 20, right: 50),
                             child: ListView(
-                              children: const [
+                              children: [
                                 SingleCategoryWidget('Starters', '7'),
                                 SingleCategoryWidget('Flatbread + Pasta', '4'),
                                 SingleCategoryWidget('Main Courses', '5'),

@@ -7,7 +7,7 @@ class SingleCategoryWidget extends StatelessWidget {
   final String title;
   final String number;
 
-  const SingleCategoryWidget(this.title, this.number);
+  SingleCategoryWidget(this.title, this.number);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +27,15 @@ class SingleCategoryWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title,
-                  style: GoogleFonts.montserrat(
-                    textStyle: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Mont',
-                        fontSize: 15),
-                  )),
+              Text(
+                title,
+                style: GoogleFonts.montserrat(
+                  textStyle: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Mont',
+                      fontSize: 15),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

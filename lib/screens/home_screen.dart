@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:bordered_text/bordered_text.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen();
+  HomeScreen();
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -15,17 +15,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    const duration = Duration(seconds: 5);
-    Timer(duration, () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const FullMenuScreen();
-          },
-        ),
-      );
-    });
+    // const duration = Duration(seconds: 5);
+    // Timer(duration, () {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) {
+    //         return const FullMenuScreen();
+    //       },
+    //     ),
+    //   );
+    // });
 
     return Scaffold(
       body: GestureDetector(
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return const FullMenuScreen();
+                return FullMenuScreen();
               },
             ),
           );

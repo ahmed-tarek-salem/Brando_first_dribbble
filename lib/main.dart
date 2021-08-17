@@ -1,3 +1,5 @@
+import 'package:Brando_first_dribbble/constants.dart';
+import 'package:Brando_first_dribbble/screens/food_category_screen.dart';
 import 'package:Brando_first_dribbble/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -7,16 +9,20 @@ void main() {
   //   home: HomeScreen(),
   // ));
   runApp(
-    const MyApp(),
+    MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp();
+  MyApp();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: kOraColor,
+        fontFamily: 'Mont',
+      ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
