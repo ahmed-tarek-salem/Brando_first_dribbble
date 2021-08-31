@@ -3,6 +3,7 @@ import 'package:Brando_first_dribbble/controllers/cart_controller.dart';
 import 'package:Brando_first_dribbble/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 class MealDetailsScreen extends StatefulWidget {
   final Product product;
@@ -14,6 +15,16 @@ class MealDetailsScreen extends StatefulWidget {
 
 class _MealDetailsScreenState extends State<MealDetailsScreen> {
   String _cartTag = "";
+  double opacity = 0;
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      setState(() {
+        opacity = 1;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,67 +35,80 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
         children: [
           Hero(
             tag: widget.product.name + _cartTag,
-            child: Image.asset(
-              widget.product.image,
-              fit: BoxFit.cover,
-              height: 400,
-              width: double.infinity,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  opacity = 1;
+                });
+              },
+              child: Image.asset(
+                widget.product.image,
+                fit: BoxFit.cover,
+                height: 50.0.h,
+                width: double.infinity,
+              ),
             ),
           ),
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 55, vertical: kPaddingVertical),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.product.name,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
+            child: AnimatedOpacity(
+              duration: kTransitionDuration,
+              opacity: opacity,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 55, vertical: kPaddingVertical),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.product.name,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 23.0.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "\$${widget.product.price}",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
+                        Text(
+                          "\$${widget.product.price}",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 23.0.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text(
-                      decripton,
-                      textAlign: TextAlign.left,
+                      ],
                     ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    height: 60,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).primaryColor,
-                        shape: const StadiumBorder(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 3.0.h),
+                      child: Text(
+                        decripton,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 11.0.sp),
                       ),
-                      onPressed: () {
-                        Get.put(CartController()).addToCart(widget.product);
-                        setState(() {
-                          _cartTag = '_cartTag';
-                        });
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Add to cart'),
                     ),
-                  ),
-                ],
+                    const Spacer(),
+                    SizedBox(
+                      height: 8.0.h,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).primaryColor,
+                          shape: const StadiumBorder(),
+                        ),
+                        onPressed: () {
+                          Get.put(CartController()).addToCart(widget.product);
+                          setState(() {
+                            _cartTag = '_cartTag';
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Add to cart'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

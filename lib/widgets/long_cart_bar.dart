@@ -13,7 +13,7 @@ class LongCartBar extends StatelessWidget {
       CartController(),
     );
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Align(
           alignment: Alignment.center,
@@ -35,19 +35,25 @@ class LongCartBar extends StatelessWidget {
               child: ListView.builder(
                 itemCount: cartController.cartItems.length + 1,
                 itemBuilder: (context, index) {
+                  final double total = cartController.cartTotalPrice();
                   if (index == cartController.cartItems.length) {
                     return Padding(
-                      padding: const EdgeInsets.only(top: kPaddingVertical),
+                      padding: const EdgeInsets.only(
+                          top: kPaddingVertical, bottom: kPaddingVertical),
                       child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Theme.of(context).primaryColor,
+                            shape: const StadiumBorder(),
+                          ),
                           onPressed: () {},
-                          child: const Text("Next - \$30"),
+                          child: Text("Next - \$$total"),
                         ),
                       ),
                     );
                   }
-                  return ItemInLongCartBar(cartController.cartItems[0]);
+                  return ItemInLongCartBar(cartController.cartItems[index]);
                 },
               ),
             );

@@ -22,9 +22,10 @@ class FoodCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('Here');
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+          backgroundColor: kOhliColor,
           body: AnimatedBuilder(
               animation: controller,
               builder: (context, snapshot) {
@@ -60,7 +61,7 @@ class FoodCategoryScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    //ListView
+                    //ListView of products
                     AnimatedPositioned(
                       duration: kTransitionDuration,
                       top: controller.homeState == HomeState.normal
@@ -69,8 +70,14 @@ class FoodCategoryScreen extends StatelessWidget {
                       left: 0,
                       right: 0,
                       child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                          color: kOhliColor,
+                        ),
                         height: screenHeight - (kHeaderHeight + kCartHeight),
-                        color: kOhliColor,
                         child: Container(
                           width: double.infinity,
                           decoration: const BoxDecoration(
